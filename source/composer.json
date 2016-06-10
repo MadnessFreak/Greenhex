@@ -1,0 +1,23 @@
+{
+    "name": "madnessfreak/greenhex",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "MadnessFreak",
+            "email": "hello@bitwappy.co"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Greenhex\\": "greenhex"
+        }
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "twbs/bootstrap": "^3.3",
+        "slim/slim": "2.*",
+        "slim/views": "0.*",
+        "twig/twig": "1.*",
+        "twig/extensions": "^1.3"
+    }
+}
