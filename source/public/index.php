@@ -4,7 +4,7 @@ namespace Greenhex;
 /**
 * Greenhex
 * 
-* @author     MadnessFreak <hello@bitwappy.co>
+* @author     MadnessFreak <hello@greenhex.net>
 * @copyright  2016 MadnessFreak
 * @package    Greenhex
 */
