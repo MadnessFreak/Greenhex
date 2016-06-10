@@ -3,7 +3,7 @@
 return [
 	'greenhex' => [
 		'title' => 'Greenhex',
-		'description' => '',
+		'description' => 'Greenhex is a free to use and open source short messaging platform.',
 		'keywords' => 'greenhex, green, hex, share, sharing'
 	],
 	'view' => [
