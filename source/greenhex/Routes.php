@@ -12,6 +12,13 @@ class Routes
 		$app->get('/test', 'Greenhex\Controllers\PageController:test');
 		$app->get('/user/:user', 'Greenhex\Controllers\UserController:view');
 
+		$app->get('/login', 'Greenhex\Controllers\AuthenticationController:login')->name('login');
+		$app->get('/logout', 'Greenhex\Controllers\AuthenticationController:logout')->name('logout');
+		$app->get('/signup', 'Greenhex\Controllers\SignupController:signup')->name('signup');
+
+		$app->post('/login', 'Greenhex\Controllers\AuthenticationController:process');
+		$app->post('/signup', 'Greenhex\Controllers\SignupController:process');
+
 		$app->group('/account', function() use ($app)
 		{
 			$app->get('/', 'Greenhex\Controllers\AccountController:view');

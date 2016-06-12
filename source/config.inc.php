@@ -10,6 +10,10 @@ return [
 		'templates' => '../templates',
 		'cache' => '../templates/cache'
 	],
+	'session' => [
+		'user' => 'user',
+		'user-auth' => 'user_auth'
+	],
 	'database' => [
 		'host' => 'localhost',
 		'port' => 3306,

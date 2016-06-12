@@ -7,6 +7,11 @@ use Slim\Slim;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
 use Twig_SimpleFunction;
+use Twig_Extension_Debug;
+
+// set session conf
+session_cache_limiter(false);
+session_start();
 
 /**
 * Greenhex
@@ -55,6 +60,7 @@ class Greenhex
 		[
 			'charset' => 'utf-8',
 			'cache' => realpath('../templates/cache'),
+			'debug' => true,
 			'auto_reload' => true,
 			'strict_variables' => false,
 			'autoescape' => false
@@ -62,12 +68,32 @@ class Greenhex
 
 		$app->view->parserExtensions = 
 		[
-			new TwigExtension()
+			new TwigExtension(),
+			new Twig_Extension_Debug()
 		];
+
+		$app->view->getInstance()->addGlobal("session", $_SESSION);
 
 		$function = new Twig_SimpleFunction("tweet", function ($text)
 		{
 			return Utility::tweet($text);
+		});
+		$app->view->getInstance()->addFunction($function);
+
+		// Add function
+		$function = new Twig_SimpleFunction("haserror", function ($context, $field)
+		{
+			if (isset($context['error']) && $context['error'] == true)
+			{
+				if (isset($context[$field]))
+				{
+					return ' has-error';
+				}
+				else
+				{
+					return ' has-success';
+				}
+			}
 		});
 		$app->view->getInstance()->addFunction($function);
 

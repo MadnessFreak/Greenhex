@@ -34,6 +34,9 @@ abstract class Controller
 		$this->data['meta_title'] = $this->config->get('greenhex.title');
 		$this->data['meta_description'] = $this->config->get('greenhex.description');
 		$this->data['meta_keywords'] = $this->config->get('greenhex.keywords');
+
+		$this->data['request']['params'] = $this->request()->params();
+		$this->data['validation'] = [];
 	}
 
 	/**
@@ -59,6 +62,17 @@ abstract class Controller
 	public function __set($name, $value)
 	{
 		$this->data[$name] = $value;
+	}
+
+	public function fail($key, $msg)
+	{
+		$this->data['validation']['error'] = true;
+		$this->data['validation'][$key] = $msg;
+	}
+
+	public function valid()
+	{
+		return isset($this->data['validation']) || !$this->data['validation']['error'];
 	}
 
 	/**

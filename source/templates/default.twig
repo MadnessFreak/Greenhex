@@ -51,7 +51,7 @@
 								</div>
 							</form>
 						</li>
-						{% if auth %}
+						{% if session.user_auth %}
 							<li><a href="{{ baseUrl() }}/notifications"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></a></li>
 							<li><a href="#" class="profile-img hidden-xs"><img class="img-circle" src="{{ baseUrl() }}/img/uploads/avatar/fb92dea26b557917da1e65a6a3e5d467.png" width="35px" height="35px" style="margin-top:7px;"></a></li>
 						{% else %}
@@ -71,47 +71,17 @@
 		</div>
 	</div>
 
-	<!--<footer class="text-center">
-		<div class="footer-above">
-			<div class="container">
-				<div class="row">
-					<div class="footer-col col-md-4">
-						<h3>Location</h3>
-						<p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
-					</div>
-					<div class="footer-col col-md-4">
-					<h3>Around the Web</h3>
-						<ul class="list-inline">
-							<li>
-								<a href="https://facebook.com/greenhex" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-							</li>
-							<li>
-								<a href="https://twitter.com/greenhex" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-							</li>
-							<li>
-								<a href="https://github.com/MadnessFreak/Greenhex" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
-							</li>
-						</ul>
-					</div>
-					<div class="footer-col col-md-4">
-						<h3>About Greenhex</h3>
-						<p>Greenhex is a free to use and open source short messaging platform.</p>
-					</div>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<hr>
 				</div>
 			</div>
 		</div>
-		<div class="footer-below">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						{{ meta_title }} 2016 — Made with &#9829; by MadnessFreak.
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>.-->
+	</footer>
 
-	<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="{{ baseUrl() }}/js/jquery-2.2.4.min.js"></script>
 	<script src="{{ baseUrl() }}/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(function()

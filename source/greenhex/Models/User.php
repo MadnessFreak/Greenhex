@@ -17,8 +17,10 @@ class User extends Model
 			'idname',
 			'name',
 			'email',
-			'passwd',
-			'token'
+			'password',
+			'token',
+			'active',
+			'tmp_key'
 		];
 
 		parent::__construct($data);
@@ -51,6 +53,33 @@ class User extends Model
 			'*',
 			[
 				$this->primaryKey => $id
+			]
+		);
+
+		// check data
+		if (!empty($data) && $data != false)
+		{
+			$this->fill($data);
+			return $this;
+		}
+
+		return null;
+	}
+
+	public function find($search)
+	{
+		// get data
+		$data = $this->connection->get
+		(
+			$this->table,
+			'*',
+			[
+				'OR' =>
+				[
+					$this->primaryKey => $search,
+					'name' => $search,
+					'email' => $search
+				]
 			]
 		);
 

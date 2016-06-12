@@ -1,0 +1,184 @@
+{% extends 'default.twig' %}
+{% block content %}
+	<div class="modal fade" id="userModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Users</h4>
+				</div>
+				<div class="modal-body">
+					<ul class="list-unstyled">
+						<li>
+							<div class="media">
+								<a class="media-header" href="#">
+									<img class="qh cu" src="assets/img/avatar-fat.jpg">
+								</a>
+								<div class="media-body">
+									<button class="btn btn-sm">
+										<span class="c aol"></span> Follow
+									</button>
+									<strong>Jacob Thornton</strong>
+									<p>@fat - San Francisco</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-3 hidden-xs" style="padding-left:0px;">
+		<div class="wbox ubox">
+			<div class="cover" style="background-image: url('{{ baseUrl() }}/img/iceland.jpg');"></div>
+			<div class="info">
+				<a href="#"><img class="img-circle" src="{{ baseUrl() }}/img/uploads/avatar/fb92dea26b557917da1e65a6a3e5d467.png"></a>
+				<h5><a href="#">Dave Gamache</a></h5>
+				<p>I wish i was a little bit taller, wish i was a baller, wish i had a girl…&nbsp;also.</p>
+				<ul>
+					<li><a href="#" data-toggle="modal" data-target="#userModal">Followers<h5>184</h5></a></li>
+					<li><a href="#" data-toggle="modal" data-target="#userModal">Favorites<h5>471</h5></a></li>
+					<li><a href="#" data-toggle="modal">Posts<h5>53</h5></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="wbox about">
+			<h5>About <small>· <a href="#">Edit</a></small></h5>
+			<ul>
+				<li><span class="glyphicon glyphicon-arrow-right"></span>Went to <a href="#">Oh, Canada</a></li>
+				<li><span class="glyphicon glyphicon-user"></span>Became friends with <a href="#">Obama</a></li>
+				<li><span class="glyphicon glyphicon-briefcase"></span>Worked at <a href="#">Github</a></li>
+				<li><span class="glyphicon glyphicon-home"></span>Lives in <a href="#">San Francisco, CA</a></li>
+				<li><span class="glyphicon glyphicon-map-marker"></span>From <a href="#">Seattle, WA</a></li>
+			</ul>
+		</div>
+
+		<div class="wbox ">
+			<div class="qw">
+				<h5>Trending</h5>
+				<ul class="list-unstyled">
+					<li><a href="#">#Bootstrap</a>
+					</li><li><a href="#">Mdo for pres</a>
+					</li><li><a href="#">#fatsux</a>
+					</li><li><a href="#">#buyme</a>
+					</li><li><a href="#">#designishard</a>
+					</li><li><a href="#">#helpawesomepeople</a>
+					</li><li><a href="#">#doawesomestuff</a>
+					</li><li><a href="#">Tom Brady</a>
+					</li><li><a href="#">Magna Carta</a>
+					</li><li><a href="#">Mark Otto</a>
+					</li><li><a href="#">Dave Gamache</a>
+					</li><li><a href="#">Jacob Thornton</a>
+				</li></ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6">
+		<div class="wbox feed">
+			<ul>
+				<li>
+					<div class="input-group">
+						<textarea class="form-control custom-control" rows="3" placeholder="Message"></textarea>
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+						</span>
+					</div>
+				</li>
+				{% for post in feed %}
+					<li class="post">
+						<div class="media">
+							<a href="{{ baseUrl() }}/user/{{ post.author_id }}" class="media-left framed">
+								<img class="img-circle" src="{{ baseUrl() }}/img/uploads/avatar/fb92dea26b557917da1e65a6a3e5d467.png" width="60px" height="60px" alt="User Avatar">
+							</a>
+							<div class="media-body">
+								<a href="{{ baseUrl() }}/post/{{ post.id }}" class="small"><time timestamp="{{ post.created_at|date('U') }}">{{ post.created_at }}</time></a>
+								<h5 class="media-heading"><a href="{{ baseUrl() }}/user/{{ post.author_id }}">{{ post.author_name }}</a></h5>
+								<p>{{ tweet(post.message) }}</p>
+							</div>
+							<!--<p class="info-ex"><a href="">5 people</a> favorited this.</p>-->
+							<ul class="comments">
+								{% for comment in post.comments %}
+									<li>
+										<a href="{{ baseUrl() }}/user/{{ comment.author_id }}"><img class="img-circle" src="img/userdata/avatar/7cd40ced436d66f730058acf7f979055.png" width="40px" alt="User Avatar"></a>
+										<div>
+											<strong>{{ comment.author_name }}</strong>
+											<span>{{ comment.message }}</span>
+										</div>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</li>
+				{% endfor %}
+
+				<!--<li class="post">
+					<div class="media">
+						<a href="{{ baseUrl() }}/ryan.schmidt" class="media-left framed"><img class="img-circle" src="{{ baseUrl() }}/img/uploads/avatar/fb92dea26b557917da1e65a6a3e5d467.png" width="60px" height="60px" alt="User Avatar"></a>
+						<div class="media-body">
+							<a href="http://hov.rewtek.net/ryan.schmidt/posts/1" class="small"><time timestamp="1443600720">4 min</time></a>
+							<h5 class="media-heading">Ryan Schmidt</h5>
+							<p>Aenean lacinia bibendum nulla sed consectetur. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+							<div class="info" style="background-color:#F6F6F6; color:#b4b7c1 !important;    font-size: 10px;padding: 10px 15px;">
+								<ul class="list-inline">
+									<li><a data-anchor-type="1" data-post-id="1" data-toggle="tooltip" data-placement="top" title="" data-original-title="Favorites"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <span data-value="">5</span></a></li>
+									<li><a data-anchor-type="2" data-post-id="1" data-toggle="tooltip" data-placement="top" title="" data-original-title="Comments"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <span data-value="">2</span></a></li>
+									<li><a data-anchor-type="3" data-post-id="1" data-toggle="tooltip" data-placement="top" title="" data-original-title="Shares"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> <span data-value="">1</span></a></li>
+									<li><a data-anchor-type="4" data-post-id="1" data-toggle="tooltip" data-placement="top" title="" data-original-title="Views"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <span data-value="">27</span></a></li>
+								</ul>
+							</div>
+							<p class="info-ex"><a href="">5 people</a> favorited this.</p>
+							<ul class="comments">
+								<li>
+									<a href="http://hov.rewtek.net/user/3"><img class="img-circle" src="img/userdata/avatar/7cd40ced436d66f730058acf7f979055.png" width="40px" alt="User Avatar"></a>
+									<div>
+										<strong>Jacon Thornton</strong>
+										<span>Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Sed posuere consectetur est at lobortis.</span>
+									</div>
+								</li>
+								<li>
+									<a href="http://hov.rewtek.net/mdo"><img class="img-circle" src="img/userdata/avatar/6000fe1c5066eec7a43203b0f111384b.png" width="40px" alt="User Avatar"></a>
+									<div>
+										<strong>Mark Otto</strong>
+										<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>-->
+				<li>
+					<pre>{{ debug }}</pre>
+				</li>
+				<li>
+					<center>Scroll down to load more posts ...</center>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="col-sm-3" style="padding-right:0px;">
+		<div class="alert alert-info alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			<a href="profile/index.html">Visit your profile!</a> Check your self, you aren't looking too good.
+		</div>
+		<div class="wbox hidden-xs">
+			<h5 class="ald">Sponsored</h5>
+			<div data-grid="images" data-target-height="150">
+				<img class="qh" data-width="640" data-height="640" data-action="zoom" src="{{ baseUrl() }}/img/sponsored.jpg" style="width: 245px; height: 230px; margin-bottom: 10px; margin-right: 0px; display: inline-block; vertical-align: bottom;">
+			</div>
+			<p><strong>It might be time to visit Iceland.</strong> Iceland is so chill, and everything looks cool here. Also, we heard the people are pretty nice. What are you waiting for?</p>
+			<button class="btn btn-default">Buy a ticket</button>
+		</div>
+		<div class="wbox">
+			<p>Made by MadnessFreak</p>
+			<a href="{{ baseUrl() }}/about">About</a>
+			<a href="{{ baseUrl() }}/about/help">Help</a>
+			<a href="{{ baseUrl() }}/about/terms">Terms</a>
+			<a href="{{ baseUrl() }}/about/privacy">Privacy</a>
+			<a href="{{ baseUrl() }}/about/cookies">Cookies</a>
+		</div>
+	</div>
+{% endblock %}

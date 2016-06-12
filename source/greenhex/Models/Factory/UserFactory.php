@@ -16,7 +16,10 @@ class UserFactory
 			];
 		}
 
-		$user->fill($data);
+		if (!empty($data))
+		{
+			$user->fill($data);
+		}
 
 		if ($insert)
 		{
@@ -30,6 +33,11 @@ class UserFactory
 	public static function get($id)
 	{
 		return UserFactory::create($id)->get();
+	}
+
+	public static function find($search)
+	{
+		return UserFactory::create()->find($search);
 	}
 
 	public static function delete($id)
