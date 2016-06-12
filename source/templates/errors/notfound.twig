@@ -1,0 +1,8 @@
+{% extends 'default.twig' %}
+{% block content %}
+	<h1>Not Found :/</h1>
+	<p class="lead">Sorry, but the requested page <code>{{ request }}</code> you were trying to view does not exist.</p>
+	<p class="lead">Why don’t you try a page that works? Are you trying to break our site or something?<br>I mean — what is the deal? Move along. There is nothing to see here.</p><br>
+	<p class="lead"><a href="{{ baseUrl() }}">Try a page that works</a></p>
+	<p class="lead"><a href="javascript:history.back();">Take me back to the previous page</a></p>
+{% endblock %}
