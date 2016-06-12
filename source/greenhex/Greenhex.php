@@ -1,10 +1,12 @@
 <?php
 namespace Greenhex;
 use Greenhex\Routes;
+use Greenhex\Utiltiy;
 use Medoo;
 use Slim\Slim;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
+use Twig_SimpleFunction;
 
 /**
 * Greenhex
@@ -27,6 +29,9 @@ class Greenhex
 		// preload and init
 		Greenhex::preload();
 		Greenhex::init();
+
+		// debug
+		//Greenhex::schema();
 
 		// run app
 		Greenhex::$app->run();
@@ -59,6 +64,12 @@ class Greenhex
 		[
 			new TwigExtension()
 		];
+
+		$function = new Twig_SimpleFunction("tweet", function ($text)
+		{
+			return Utility::tweet($text);
+		});
+		$app->view->getInstance()->addFunction($function);
 
 		// database setup
 		$database = new Medoo

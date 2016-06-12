@@ -10,17 +10,10 @@ class UserFactory
 
 		if (!is_array($data))
 		{
-			if (is_integer($data))
-			{
-				$data = 
-				[
-					$user->getKeyName() => $data
-				];
-			}
-			else
-			{
-				$data = [];
-			}
+			$data = 
+			[
+				$user->getKeyName() => $data
+			];
 		}
 
 		$user->fill($data);
@@ -28,7 +21,7 @@ class UserFactory
 		if ($insert)
 		{
 			$temp = $user->insert();
-			print_r($temp);
+			print_r($temp); // TODO: DEBUG
 		}
 
 		return $user;
