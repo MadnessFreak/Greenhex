@@ -35,6 +35,11 @@ class UserFactory
 		return UserFactory::create($id)->get();
 	}
 
+	public static function by($field, $value)
+	{
+		return UserFactory::create()->by($field, $value);
+	}
+
 	public static function find($search)
 	{
 		return UserFactory::create()->find($search);

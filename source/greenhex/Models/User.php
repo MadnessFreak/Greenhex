@@ -20,7 +20,7 @@ class User extends Model
 			'password',
 			'token',
 			'active',
-			'tmp_key'
+			'activation_code'
 		];
 
 		parent::__construct($data);
@@ -53,6 +53,28 @@ class User extends Model
 			'*',
 			[
 				$this->primaryKey => $id
+			]
+		);
+
+		// check data
+		if (!empty($data) && $data != false)
+		{
+			$this->fill($data);
+			return $this;
+		}
+
+		return null;
+	}
+
+	public function by($field, $value)
+	{
+		// get data
+		$data = $this->connection->get
+		(
+			$this->table,
+			'*',
+			[
+				$field => $value
 			]
 		);
 

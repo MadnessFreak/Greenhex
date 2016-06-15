@@ -21,7 +21,8 @@ class Routes
 
 		$app->group('/account', function() use ($app)
 		{
-			$app->get('/', 'Greenhex\Controllers\AccountController:view');
+			$app->get('/', 'Greenhex\Controllers\AccountController:index');
+			$app->get('/activation/:code', 'Greenhex\Controllers\AccountController:activation');
 		});
 
 		// Not found

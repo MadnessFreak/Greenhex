@@ -88,7 +88,7 @@
 					</a>
 
 					{% if flash|length > 0 or validation.error == true %}
-						<div class="alert alert-danger" role="alert">
+						<div class="alert alert-{{ flash.error ? 'danger' : 'success' }}" role="alert">
 							{{ flash|first ? flash|first : validation|last }}
 						</div>
 					{% endif %}

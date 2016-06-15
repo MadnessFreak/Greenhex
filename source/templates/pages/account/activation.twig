@@ -1,0 +1,16 @@
+{% extends 'default.twig' %}
+{% block content %}
+	<div class="col-xs-12">
+		<h3>Account Activation</h3>
+		<hr>
+		{% if activation_valid %}
+			<div class="alert alert-success" role="alert">
+				Thanks! Your account has been activated. You can <a href="{{ urlFor('login') }}">log in</a> now.
+			</div>
+		{% else %}
+			<div class="alert alert-danger" role="alert">
+				Sorry, this activation code is invalid or has been expired.
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

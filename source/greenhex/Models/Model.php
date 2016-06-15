@@ -184,7 +184,7 @@ abstract class Model
 
 		foreach ($this->fillable as $key)
 		{
-			if (isset($this->data[$key]))
+			if (array_key_exists($key, $this->data))
 			{
 				$data[$key] = $this->data[$key];
 			}
