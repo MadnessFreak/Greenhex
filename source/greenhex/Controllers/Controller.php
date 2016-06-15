@@ -17,6 +17,10 @@ abstract class Controller
 	 */
 	protected $config;
 	/**
+	 * @var	Mailer
+	 */
+	protected $mailer;
+	/**
 	 * @var	array	Optional template data
 	 */
 	protected $data;
@@ -29,6 +33,7 @@ abstract class Controller
 		$this->app = Greenhex::getApp();
 		$this->db = $this->app->db;
 		$this->config = $this->app->config;
+		$this->mailer = $this->app->mailer;
 
 		$this->data = [];
 		$this->data['meta_title'] = $this->config->get('greenhex.title');

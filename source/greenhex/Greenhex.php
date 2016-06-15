@@ -109,6 +109,17 @@ class Greenhex
 			'prefix' => $config->get('database.prefix')
 		]);
 
+		// mailer setup
+		$mailer = new Mailer
+		([
+			'host' => $config->get('mailer.host'),
+			'port' => $config->get('mailer.port'),
+			'username' => $config->get('mailer.user'),
+			'password' => $config->get('mailer.passwd'),
+			'sender' => $config->get('mailer.sender'),
+			'sender-name' => $config->get('mailer.sender-name')
+		]);
+
 		// slim container setup
 		$app->container->set('config', function() use($config)
 		{
@@ -117,6 +128,10 @@ class Greenhex
 		$app->container->set('db', function() use ($database)
 		{
 			return $database;
+		});
+		$app->container->set('mailer', function() use ($mailer)
+		{
+			return $mailer;
 		});
 
 		// routes setup
