@@ -53,7 +53,17 @@
 						</li>
 						{% if session.user_auth %}
 							<li><a href="{{ baseUrl() }}/notifications"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span></a></li>
-							<li><a href="#" class="profile-img hidden-xs"><img class="img-circle" src="{{ baseUrl() }}/img/uploads/avatar/fb92dea26b557917da1e65a6a3e5d467.png" width="35px" height="35px" style="margin-top:7px;"></a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle profile-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+									<img class="img-circle" src="{{ baseUrl() }}/img/uploads/avatar/fb92dea26b557917da1e65a6a3e5d467.png" width="35px" height="35px" style="margin-top:7px;">
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="{{ baseUrl() }}/account">Account</a></li>
+									<li><a href="{{ baseUrl() }}/account/settings">Account Settings</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="{{ baseUrl() }}/logout">Logout</a></li>
+								</ul>
+							</li>
 						{% else %}
 							<li><a href="{{ baseUrl() }}/login">Log In</a></li>
 							<li><a href="{{ baseUrl() }}/signup">Sign Up</a></li>
